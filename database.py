@@ -63,7 +63,7 @@ class DataBase():
     def insert_data(self, full_dataset):
         cursor = self.connection.cursor()
         
-        campos_tabela = ('Nfe', 'serie', 'data_emissao', 'chave', 'cnpj_emitente', 'nome_emitente', 'valorNfe', 'itemNota', 'cod', 'qntd', 'descricao', 'unidade_medida', 'valorProd', 'data_importacao', 'usuario', 'data_saida')
+        campos_tabela = ('Nfe', 'serie', 'data_emissao', 'chave', 'cnpj_emitente', 'nome_emitente', 'valorNfe', 'itemNota', 'cod', 'descricao', 'unidade_medida', 'qntd', 'valorProd', 'data_importacao', 'usuario', 'data_saida')
 
         qntd = ','.join(map(str, '?'*16))
         
@@ -90,9 +90,9 @@ class DataBase():
                 valorNfe TEXT,
                 itemNota TEXT,
                 cod TEXT,
-                qntd TEXT,
                 descricao TEXT,
                 unidade_medida TEXT,
+                qntd TEXT,    
                 valorProd TEXT,
                 data_importacao TEXT,
                 usuario TEXT,
@@ -100,6 +100,24 @@ class DataBase():
                 PRIMARY KEY(chave, NFe, itemNota)
                 );
             """)
+        except AttributeError:
+            print('Faça a conexão')
+
+    def update_estoque(self, data_saida, user, notas):
+        try:
+            cursor = self.connection.cursor()
+            for nota in notas:
+                cursor.execute(f"UPDATE Notas SET data_saida = '{data_saida}', usuario = '{user}' WHERE Nfe = '{nota}'")
+                self.connection.commit()
+        except AttributeError:
+            print('Faça a conexão')
+
+    def update_estorno(self, notas):
+        try:
+            cursor = self.connection.cursor()
+            for nota in notas:
+                cursor.execute(f"UPDATE Notas SET data_saida = '' WHERE Nfe = '{nota}'")
+                self.connection.commit()
         except AttributeError:
             print('Faça a conexão')
 

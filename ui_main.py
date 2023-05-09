@@ -433,10 +433,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_11.addWidget(self.txt_filtro)
 
-        self.tb_estoque = QTableView(self.tab_2)
-        self.tb_estoque.setObjectName(u"tb_estoque")
+        self.tb_geral = QTableView(self.tab_2)
+        self.tb_geral.setObjectName(u"tb_geral")
 
-        self.verticalLayout_11.addWidget(self.tb_estoque)
+        self.verticalLayout_11.addWidget(self.tb_geral)
 
         self.tb_base.addTab(self.tab_2, "")
 
@@ -855,16 +855,20 @@ class Ui_MainWindow(object):
         self.progressBar.setFormat(QCoreApplication.translate("MainWindow", u"%p%", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600; color:#ffffff;\">Estoque</span></p></body></html>", None))
         ___qtreewidgetitem = self.tw_estoque.headerItem()
-        ___qtreewidgetitem.setText(11, QCoreApplication.translate("MainWindow", u"Usu\u00e1rio", None));
-        ___qtreewidgetitem.setText(10, QCoreApplication.translate("MainWindow", u"Data Importa\u00e7\u00e3o", None));
-        ___qtreewidgetitem.setText(9, QCoreApplication.translate("MainWindow", u"Valor NFe", None));
-        ___qtreewidgetitem.setText(8, QCoreApplication.translate("MainWindow", u"Esp\u00e9cie", None));
-        ___qtreewidgetitem.setText(7, QCoreApplication.translate("MainWindow", u"UN", None));
-        ___qtreewidgetitem.setText(6, QCoreApplication.translate("MainWindow", u"Descri\u00e7\u00e3o", None));
-        ___qtreewidgetitem.setText(5, QCoreApplication.translate("MainWindow", u"Quantidade", None));
-        ___qtreewidgetitem.setText(4, QCoreApplication.translate("MainWindow", u"C\u00f3d. Item", None));
-        ___qtreewidgetitem.setText(3, QCoreApplication.translate("MainWindow", u"Munic\u00edpio", None));
-        ___qtreewidgetitem.setText(2, QCoreApplication.translate("MainWindow", u"Cliente", None));
+        ___qtreewidgetitem.setText(15, QCoreApplication.translate("MainWindow", u"Data Sa\u00edda", None));
+        ___qtreewidgetitem.setText(14, QCoreApplication.translate("MainWindow", u"Usu\u00e1rio", None));
+        ___qtreewidgetitem.setText(13, QCoreApplication.translate("MainWindow", u"Data Importa\u00e7\u00e3o", None));
+        ___qtreewidgetitem.setText(12, QCoreApplication.translate("MainWindow", u"Valor Item", None));
+        ___qtreewidgetitem.setText(11, QCoreApplication.translate("MainWindow", u"Quantidade Item", None));
+        ___qtreewidgetitem.setText(10, QCoreApplication.translate("MainWindow", u"Unidade", None));
+        ___qtreewidgetitem.setText(9, QCoreApplication.translate("MainWindow", u"Descricao", None));
+        ___qtreewidgetitem.setText(8, QCoreApplication.translate("MainWindow", u"Codigo Item", None));
+        ___qtreewidgetitem.setText(7, QCoreApplication.translate("MainWindow", u"Item Nota", None));
+        ___qtreewidgetitem.setText(6, QCoreApplication.translate("MainWindow", u"Valor NFe", None));
+        ___qtreewidgetitem.setText(5, QCoreApplication.translate("MainWindow", u"Emitente", None));
+        ___qtreewidgetitem.setText(4, QCoreApplication.translate("MainWindow", u"CNPJ Emitente", None));
+        ___qtreewidgetitem.setText(3, QCoreApplication.translate("MainWindow", u"Chave", None));
+        ___qtreewidgetitem.setText(2, QCoreApplication.translate("MainWindow", u"Data Emissao", None));
         ___qtreewidgetitem.setText(1, QCoreApplication.translate("MainWindow", u"Serie", None));
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"NFe", None));
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600; color:#ffffff;\">Sa\u00edda</span></p></body></html>", None))
@@ -878,11 +882,11 @@ class Ui_MainWindow(object):
         self.btn_estorno.setText(QCoreApplication.translate("MainWindow", u"Estorno", None))
         self.btn_importar.setText("")
         self.tb_base.setTabText(self.tb_base.indexOf(self.tables), QCoreApplication.translate("MainWindow", u"Base", None))
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; font-weight:600; color:#ffffff;\">Estoque</span></p></body></html>", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; font-weight:600; color:#ffffff;\">GERAL</span></p></body></html>", None))
         self.btn_chart.setText(QCoreApplication.translate("MainWindow", u"Gerar Gr\u00e1fico", None))
         self.btn_excel.setText(QCoreApplication.translate("MainWindow", u"Gerar Excel", None))
         self.txt_filtro.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Filtro", None))
-        self.tb_base.setTabText(self.tb_base.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Estoque", None))
+        self.tb_base.setTabText(self.tb_base.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Geral", None))
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-weight:600; color:#ffffff;\">Sobre</span></p></body></html>", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Esse sistema faz a importa\u00e7\u00e3o de arquivos XML e faz o controle de estoque de acordo com a entrada de notas e sa\u00eddas apontadas pelo usu\u00e1rio.</span></p><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Desenvolvido no curso Sistema de Gerenciamento com Python e QT Designer pelo YouTube no canal PyTax.</span></p></body></html>", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-weight:600; color:#ffffff;\">Contatos</span></p></body></html>", None))

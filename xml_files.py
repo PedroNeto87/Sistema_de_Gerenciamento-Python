@@ -43,7 +43,7 @@ class Read_xml():
             unidade_medida = self.check_none(item.find("./ns:prod/ns:uCom", nsNFe))
             valorProd = self.check_none(item.find("./ns:prod/ns:vProd", nsNFe))
 
-            dados = [NFe, serie, data_emissao, chave, cnpj_emitente, nome_emitente, valorNfe, itemNota, cod, qntd, descricao, unidade_medida, valorProd, data_importacao, usuario, data_saida]
+            dados = [NFe, serie, data_emissao, chave, cnpj_emitente, nome_emitente, valorNfe, itemNota, cod, descricao, unidade_medida, qntd, valorProd, data_importacao, usuario, data_saida]
             notas.append(dados)
             itemNota += 1
         return notas
