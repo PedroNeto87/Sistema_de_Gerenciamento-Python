@@ -1,5 +1,6 @@
 from PySide2 import QtCore
 from PySide2.QtWidgets import (QApplication, QMainWindow, QWidget, QMessageBox, QFileDialog, QTreeWidgetItem)
+from PySide2.QtGui import QIcon
 from ui_login import Ui_Login
 from ui_main import Ui_MainWindow
 from database import DataBase
@@ -10,7 +11,11 @@ import pandas as pd
 from PySide2.QtSql import QSqlDatabase, QSqlTableModel
 import re
 from datetime import date
+import matplotlib.pyplot as plt
 
+#GERAR EXECUTAVEL
+#pip install pyinstaller
+#pyinstaller.exe --onefile --windowed --icon=icone.ico main.py
 
 class login(QWidget, Ui_Login):
     def __init__(self) -> None:
@@ -18,6 +23,8 @@ class login(QWidget, Ui_Login):
         self.tentativas = 0
         self.setupUi(self)
         self.setWindowTitle('Login do Sistema')
+        appIcon = QIcon('imgs/logo.png')
+        self.setWindowIcon(appIcon)
 
         self.btn_login.clicked.connect(self.checkLogin)
 
@@ -48,6 +55,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.setWindowTitle('Sistema de Gerenciamento')
+        appIcon = QIcon('imgs/logo.png')
+        self.setWindowIcon(appIcon)
+
         self.user = username
 
         if user == 'user':
@@ -73,6 +83,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #GERAR SAIDA E ESTORNO
         self.btn_gerar.clicked.connect(self.gerar_saida)
         self.btn_estorno.clicked.connect(self.gerar_estorno)
+
+        #GERAR EXCEL E GRÁFICO
+        self.btn_excel.clicked.connect(self.excel_file)
+        self.btn_chart.clicked.connect(self.graphic)
 
         self.reset_tabel()
 
@@ -276,6 +290,35 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.db.update_estoque(data_saida, self.user, self.checked_items_out)
                 self.db.close_connection()
                 self.reset_tabel()
+
+    def excel_file(self):
+        #pip install openpyxl
+        cnx = sqlite3.connect('system.db')
+        result = pd.read_sql_query("SELECT * FROM Notas", cnx)
+        result.to_excel("Resumo de notas.xlsx", sheet_name='Notas', index=False)
+
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle('Relatório de Notas')
+        msg.setText('Relatório gerado com sucesso!')
+        msg.exec_()
+
+    def graphic(self):
+        #pip install matplolib
+        cnx = sqlite3.connect('system.db')
+        estoque = pd.read_sql_query("SELECT * FROM Notas", cnx)
+        saida = pd.read_sql_query("SELECT * FROM Notas WHERE data_saida != ''", cnx)
+
+        estoque = len(estoque)
+        saida = len(saida)
+
+        labels = 'Estoque', 'Saídas'
+        sizes = [estoque, saida]
+        fig1, axl = plt.subplots()
+        axl.pie(sizes, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+        axl.axis('equal')
+
+        plt.show()
 
 
 if __name__ == '__main__':
